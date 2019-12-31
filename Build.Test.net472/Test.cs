@@ -4,22 +4,28 @@ using Microsoft.Build.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Xunit;
 
 namespace TestBuild
 {
     public class Test
     {
+        private static int _refCount;
+
         public Test()
         {
-            MSBuildLocator.RegisterDefaults();
+            if (Interlocked.Increment(ref _refCount) == 1)
+            {
+                MSBuildLocator.RegisterDefaults();
+            }
         }
 
         [Theory]
-        //[InlineData("Build.multitarget.sdk.project")]
+        [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
-        //[InlineData("Build.net472.sdk.project")]
-        //[InlineData("Build.netstandard20.sdk.project")]
+        [InlineData("Build.net472.sdk.project")]
+        [InlineData("Build.netstandard20.sdk.project")]
         public void BuildRequest_EnableNodeReuse_DisableInProcNode_Restore_Build_Target(string projectName)
         {
             using (var buildManager = new BuildManager())
@@ -49,7 +55,7 @@ namespace TestBuild
             }
         }
 
-        [Theory(Skip = "Skip")]
+        [Theory]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -82,7 +88,7 @@ namespace TestBuild
             }
         }
 
-        [Theory(Skip = "Skip")]
+        [Theory]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -115,7 +121,7 @@ namespace TestBuild
             }
         }
 
-        [Theory(Skip = "Skip")]
+        [Theory]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -145,7 +151,7 @@ namespace TestBuild
             }
         }
 
-        [Theory(Skip = "Skip")]
+        [Theory]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
