@@ -1,4 +1,5 @@
 ﻿using Microsoft.Build.Execution;
+using Microsoft.Build.Locator;
 using Microsoft.Build.Utilities;
 using System.Collections.Generic;
 using System.IO;
@@ -9,11 +10,16 @@ namespace TestBuild
 {
     public class Test
     {
+        public Test()
+        {
+            MSBuildLocator.RegisterDefaults();
+        }
+
         [Theory]
-        [InlineData("Build.multitarget.sdk.project")]
+        //[InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
-        [InlineData("Build.net472.sdk.project")]
-        [InlineData("Build.netstandard20.sdk.project")]
+        //[InlineData("Build.net472.sdk.project")]
+        //[InlineData("Build.netstandard20.sdk.project")]
         public void BuildRequest_EnableNodeReuse_DisableInProcNode_Restore_Build_Target(string projectName)
         {
             using (var buildManager = new BuildManager())
@@ -43,7 +49,7 @@ namespace TestBuild
             }
         }
 
-        [Theory]
+        [Theory(Skip = "Skip")]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -76,7 +82,7 @@ namespace TestBuild
             }
         }
 
-        [Theory]
+        [Theory(Skip = "Skip")]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -109,7 +115,7 @@ namespace TestBuild
             }
         }
 
-        [Theory]
+        [Theory(Skip = "Skip")]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
@@ -139,7 +145,7 @@ namespace TestBuild
             }
         }
 
-        [Theory]
+        [Theory(Skip = "Skip")]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
         [InlineData("Build.net472.sdk.project")]
