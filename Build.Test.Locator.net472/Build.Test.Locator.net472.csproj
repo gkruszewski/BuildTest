@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D0BB22A-60EF-4E6B-A58A-46ABBE99AE85}</ProjectGuid>
+    <ProjectGuid>{74174860-2955-4070-94BB-B16A9ABB4FC8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Build.Test.net472</RootNamespace>
@@ -51,8 +51,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build" Version="16.4.0" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" />
+    <PackageReference Include="Microsoft.Build" Version="16.4.0" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.Build.Locator">
+      <Version>1.2.6</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.4.0" ExcludeAssets="runtime" />
     <PackageReference Include="xunit">
       <Version>2.4.1</Version>
     </PackageReference>
