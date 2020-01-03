@@ -47,7 +47,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="BuildRequestTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

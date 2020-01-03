@@ -1,14 +1,26 @@
 ﻿using Microsoft.Build.Execution;
+using Microsoft.Build.Locator;
 using Microsoft.Build.Utilities;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Xunit;
 
-namespace TestBuild
+namespace Build.Test.Locator.net472
 {
-    public class Test
+    public class BuildRequestTests
     {
+        private static int _refCount;
+
+        public BuildRequestTests()
+        {
+            if (Interlocked.Increment(ref _refCount) == 1)
+            {
+                MSBuildLocator.RegisterDefaults();
+            }
+        }
+
         [Theory]
         [InlineData("Build.multitarget.sdk.project")]
         [InlineData("Build.net472.project")]
